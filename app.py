@@ -1,7 +1,13 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+from textblob import TextBlob
+import nltk
+import string
 
+# Initialize Flask app
 app = Flask(__name__)
+
+# Configure CORS
 CORS(app, resources={
     r"/*": {
         "origins": ["https://dapper-lily-09264d.netlify.app"],
@@ -10,28 +16,9 @@ CORS(app, resources={
     }
 })
 
-
-
-from flask import Flask, request, jsonify
-from textblob import TextBlob
-import nltk
-import os
-# nltk_data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'nltk_data')
-# os.makedirs(nltk_data_dir, exist_ok=True)
-# nltk.data.path.append(nltk_data_dir)
-# nltk.download('punkt', download_dir=nltk_data_dir)
-import string
-
 # Download required NLTK data
 nltk.download('punkt_tab', quiet=True)
 nltk.download('punkt', quiet=True)
-
-# try:
-#     nltk.data.find('tokenizers/punkt')
-# except LookupError:
-#     nltk.download('punkt')
-
-app = Flask(__name__)
 
 def preprocess_word(word):
     return word.strip(string.punctuation)
