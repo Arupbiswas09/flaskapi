@@ -10,6 +10,7 @@ import string
 
 # Download required NLTK data
 nltk.download('punkt_tab', quiet=True)
+nltk.download('punkt', quiet=True)
 
 # try:
 #     nltk.data.find('tokenizers/punkt')
