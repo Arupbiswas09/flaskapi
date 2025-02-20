@@ -1,3 +1,23 @@
+from flask import Flask
+from flask_cors import CORS
+
+app = Flask(__name__)
+
+# Configure CORS to allow requests from your Netlify domain
+CORS(app, resources={
+    r"/analyze": {
+        "origins": [
+            "https://dapper-lily-09264d.netlify.app",
+            "http://localhost:5173"  # For local development
+        ],
+        "methods": ["POST"],
+        "allow_headers": ["Content-Type"]
+    }
+})
+
+# Your existing routes and code here
+
+
 from flask import Flask, request, jsonify
 from textblob import TextBlob
 import nltk
